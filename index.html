@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetroSurv-Bench | Anonymous Project Page</title>
+  <meta name="description" content="Anonymous project page for MetroSurv-Bench, a benchmark for multimodal traffic surveillance understanding, temporal grounding, and multi-intersection reasoning.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Anonymous Submission</p>
+      <h1>MetroSurv-Bench</h1>
+      <p class="subtitle">
+        A benchmark for multimodal traffic surveillance understanding,
+        temporal grounding, and multi-intersection reasoning.
+      </p>
+      <div class="hero-links">
+        <a class="button disabled" href="javascript:void(0)">Paper (Anonymous)</a>
+        <a class="button disabled" href="javascript:void(0)">Dataset (Anonymous)</a>
+        <a class="button disabled" href="javascript:void(0)">Code (Anonymous)</a>
+      </div>
+      <p class="note">
+        Author names, affiliations, and external repository links are intentionally omitted for double-blind review.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section teaser-section">
+      <div class="container">
+        <figure class="figure teaser">
+          <img src="assets/construction-modified2.png" alt="MetroSurv-Bench teaser overview">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <h2>Abstract</h2>
+        <p>
+          MetroSurv-Bench is a benchmark for evaluating whether modern multimodal large language models can handle
+          surveillance-oriented traffic understanding beyond generic video QA. The benchmark jointly measures
+          traffic element perception, dynamic event understanding, temporal grounding, and multi-intersection reasoning
+          across upstream and downstream camera views. It is designed to expose capability gaps that are easy to miss
+          when evaluation is limited to short, single-view, or purely recognition-centric video tasks.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <h2>What MetroSurv-Bench Evaluates</h2>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>Level 1</h3>
+            <p>Traffic element perception, including pedestrians and traffic officers, vehicles, road infrastructure, and counting.</p>
+          </article>
+          <article class="info-card">
+            <h3>Level 2</h3>
+            <p>Dynamic event understanding, including single-vehicle behavior, inter-vehicle interaction, traffic-flow behavior, and dynamic counting.</p>
+          </article>
+          <article class="info-card">
+            <h3>Level 3</h3>
+            <p>Multi-intersection reasoning, including lane correspondence, timestamp-based re-identification, destination tracking, and congestion causation.</p>
+          </article>
+          <article class="info-card">
+            <h3>Temporal Grounding</h3>
+            <p>Natural-language localization of traffic events with mIoU and recall at multiple temporal IoU thresholds.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Benchmark Taxonomy</h2>
+        <p class="section-text">
+          The benchmark is organized around a three-level hierarchy for surveillance QA, plus a dedicated temporal grounding track.
+        </p>
+        <figure class="figure large">
+          <img src="assets/sunburst_traffic.png" alt="MetroSurv-Bench taxonomy">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <h2>Example Tasks</h2>
+        <p class="section-text">
+          MetroSurv-Bench covers traffic element perception, dynamic event understanding, and cross-camera reasoning between upstream and downstream intersections.
+        </p>
+        <figure class="figure wide">
+          <img src="assets/example.png" alt="Examples of Level 1, Level 2, and Level 3 tasks in MetroSurv-Bench">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Dataset Composition</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number">632</span>
+            <span class="stat-label">MCQ samples</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">62</span>
+            <span class="stat-label">Multi-intersection samples</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">364</span>
+            <span class="stat-label">Temporal grounding samples</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">1,058</span>
+            <span class="stat-label">Total benchmark instances</span>
+          </div>
+        </div>
+        <p class="section-text">
+          The dataset is not restricted to very short clips. MCQ is concentrated in the 0-60s range, while temporal grounding is distributed across
+          0-30s, 30-60s, 1-2min, and 2-5min. The multi-intersection subset contains a relatively larger share of long-horizon examples.
+        </p>
+        <figure class="figure medium">
+          <img src="assets/video_length.png" alt="Video duration distribution across MetroSurv-Bench subsets">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container narrow">
+        <h2>Main Findings</h2>
+        <ul class="findings">
+          <li><strong>Commercial models remain strongest overall.</strong> Gemini-3.1-Pro-Preview achieves the best reported overall score among fully evaluated models on the main benchmark (66.3).</li>
+          <li><strong>Open-source models are already competitive on Level 1 perception.</strong> Qwen3.5-27B reaches the best Level 1 average (79.2), suggesting that basic perception is no longer the primary bottleneck.</li>
+          <li><strong>Cross-camera reasoning is much harder.</strong> Multi-intersection reasoning produces a sharper model separation than single-view perception and event recognition.</li>
+          <li><strong>Grounding rankings differ from QA rankings.</strong> TimeLens is highly competitive on temporal localization, indicating that video-specialized modeling particularly helps grounding.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Main Benchmark Results</h2>
+        <p class="section-text">
+          The table below summarizes performance on MetroSurv-Bench across Level 1 traffic element perception, Level 2 dynamic event understanding,
+          and Level 3 multi-intersection reasoning.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Frames</th>
+                <th>L1 Avg</th>
+                <th>L2 Avg</th>
+                <th>L3</th>
+                <th>Overall</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Gemini-3.1-Pro-Preview</td><td>1 fps</td><td>70.2</td><td>65.6</td><td>54.8</td><td>66.3</td><td>Commercial</td></tr>
+              <tr><td>GPT-5.4</td><td>50</td><td>73.1</td><td>60.3</td><td>54.8</td><td>64.9</td><td>Commercial</td></tr>
+              <tr><td>Kimi-K2.6</td><td>1 fps</td><td>73.4</td><td>61.9</td><td>48.4</td><td>65.1</td><td>Commercial</td></tr>
+              <tr><td>Qwen3.5-Plus</td><td>64</td><td>73.8</td><td>60.0</td><td>41.4</td><td>63.7</td><td>Commercial</td></tr>
+              <tr><td>Qwen3.5-35B-A3B</td><td>64</td><td>75.7</td><td>53.2</td><td>30.6</td><td>59.9</td><td>Open-source VL</td></tr>
+              <tr><td>Qwen3.5-27B</td><td>64</td><td>79.2</td><td>60.2</td><td>29.6</td><td>64.8</td><td>Open-source VL</td></tr>
+              <tr><td>Qwen2.5-VL-72B-Instruct</td><td>64</td><td>69.6</td><td>50.5</td><td>41.2</td><td>57.2</td><td>Open-source VL</td></tr>
+              <tr><td>Qwen3-VL-30B-A3B-Instruct</td><td>64</td><td>73.9</td><td>53.3</td><td>45.6</td><td>60.8</td><td>Open-source VL</td></tr>
+              <tr><td>InternVL3.5-38B</td><td>64</td><td>66.8</td><td>52.3</td><td>50.0</td><td>57.9</td><td>Open-source VL</td></tr>
+              <tr><td>MiMo-VL-7B-RL</td><td>64</td><td>65.7</td><td>45.1</td><td>43.8</td><td>53.2</td><td>Open-source VL</td></tr>
+              <tr><td>VideoLLaMA3-7B</td><td>1 fps</td><td>63.3</td><td>49.2</td><td>29.4</td><td>52.8</td><td>VideoLLM</td></tr>
+              <tr><td>VideoChat-Flash</td><td>512</td><td>63.3</td><td>49.1</td><td>N/A</td><td>55.4</td><td>VideoLLM</td></tr>
+              <tr><td>Keye-VL-1.5-8B</td><td>64</td><td>60.4</td><td>46.2</td><td>43.5</td><td>51.6</td><td>VideoLLM</td></tr>
+              <tr><td>InternVideo2.5</td><td>512</td><td>52.1</td><td>42.1</td><td>33.9</td><td>45.3</td><td>VideoLLM</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <h2>Temporal Grounding Results</h2>
+        <p class="section-text">
+          Temporal grounding is evaluated with mIoU and recall under multiple temporal IoU thresholds. The ranking differs from the QA setting,
+          which highlights the importance of evaluating temporal localization as a separate capability.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Frames</th>
+                <th>R1@0.3</th>
+                <th>R1@0.5</th>
+                <th>R1@0.7</th>
+                <th>mIoU</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Gemini-3.1-Pro-Preview</td><td>1 fps</td><td>45.1</td><td>24.5</td><td>10.2</td><td>27.9</td><td>Commercial</td></tr>
+              <tr><td>Doubao-Seed-2.0-Pro</td><td>1 fps</td><td>32.1</td><td>19.5</td><td>6.3</td><td>20.8</td><td>Commercial</td></tr>
+              <tr><td>GPT-5.4</td><td>50</td><td>22.9</td><td>14.0</td><td>4.7</td><td>15.8</td><td>Commercial</td></tr>
+              <tr><td>Qwen3.5-27B</td><td>64</td><td>22.6</td><td>13.4</td><td>5.6</td><td>16.3</td><td>Open-source VL</td></tr>
+              <tr><td>Qwen2.5-VL-72B-Instruct</td><td>1 fps</td><td>23.1</td><td>14.8</td><td>5.8</td><td>15.4</td><td>Open-source VL</td></tr>
+              <tr><td>Qwen3-VL-8B-Instruct</td><td>64</td><td>34.5</td><td>20.1</td><td>8.6</td><td>23.8</td><td>Open-source VL</td></tr>
+              <tr><td>Qwen3-VL-30B-A3B-Instruct</td><td>64</td><td>30.8</td><td>19.0</td><td>7.9</td><td>23.8</td><td>Open-source VL</td></tr>
+              <tr><td>MiMo-VL-7B-RL</td><td>64</td><td>23.5</td><td>13.3</td><td>6.1</td><td>15.9</td><td>Open-source VL</td></tr>
+              <tr><td>VideoLLaMA3-7B</td><td>1 fps</td><td>30.0</td><td>16.7</td><td>9.0</td><td>19.4</td><td>VideoLLM</td></tr>
+              <tr><td>TimeLens</td><td>1 fps</td><td>36.9</td><td>24.3</td><td>13.5</td><td>27.0</td><td>VideoLLM</td></tr>
+              <tr><td>VideoChat-Flash</td><td>512</td><td>21.7</td><td>15.0</td><td>5.4</td><td>15.2</td><td>VideoLLM</td></tr>
+              <tr><td>Keye-VL-1.5-8B</td><td>64</td><td>18.6</td><td>11.6</td><td>4.7</td><td>13.9</td><td>VideoLLM</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <h2>Anonymous Release Notes</h2>
+        <p>
+          This page is intentionally anonymized for submission. It avoids author names, affiliations, and identity-revealing external links.
+          Public links to paper, dataset, code, and citation information can be added after the review process.
+        </p>
+        <p class="note">
+          If you want to add the missing teaser figure later, place the exported PNG in <code>anonymous_project_page/assets/</code>
+          and insert it near the top of the page.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Anonymous project page for double-blind review.</p>
+    </div>
+  </footer>
+</body>
+</html>
